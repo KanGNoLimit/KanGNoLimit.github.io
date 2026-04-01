@@ -1,4 +1,3 @@
-# KanGNoLimit.github.io
 <img src="https://github.com/KanGNoLimit/KanGNoLimit.github.io/blob/main/images.jpg" alt="RPB Photo" align="right" width="30%"/>
 
 # _Khant Thu Aung_
