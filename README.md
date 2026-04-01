@@ -46,7 +46,6 @@ and Web Community Development as well as mutagenic and carcinogenic activities o
 
 # Contact Info
 * [Web Page](https://rbatzing.github.io)
-* [LinkedIn](https://www.linkedin.com/in/robert-batzinger)
-* [Twitter](https://twitter.com/rbatz)
-* [Google Scholar](https://scholar.google.com/citations?user=LYSacdYAAAAJ&hl=en)
-* [Research Gate](https://www.researchgate.net/profile/Robert-Batzinger)
+* [LinkedIn](https://www.linkedin.com/in/khant-thu-aung-529b48288/)
+* [Facebook]([https://twitter.com/rbatz](https://www.facebook.com/share/18VxMFexCW/?mibextid=wwXIfr))
+
