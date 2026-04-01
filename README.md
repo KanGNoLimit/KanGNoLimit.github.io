@@ -1,4 +1,4 @@
-<img src="https://github.com/KanGNoLimit/KanGNoLimit.github.io/blob/main/images.jpg" alt="RPB Photo" align="right" width="30%"/>
+<img src="https://github.com/KanGNoLimit/KanGNoLimit.github.io/blob/main/Screenshot%202026-01-07%20113649.png" alt="RPB Photo" align="right" width="30%"/>
 
 # _Khant Thu Aung_
 > _Praeceptor Emeritus_<br />
