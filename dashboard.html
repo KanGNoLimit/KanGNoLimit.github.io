@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>StudoSpend – Dashboard</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ════════════════════════════════
+     PAGE: HOME DASHBOARD
+════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <div class="app-header">
+    <div class="app-header-left">
+      <div class="app-logo-sm">
+        <svg viewBox="0 0 24 24"><path d="M21 7H3a1 1 0 0 0-1 1v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a1 1 0 0 0-1-1zm-1 11H4V9h16v9z"/><path d="M16 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/><path d="M7 5h10a1 1 0 0 0 0-2H7a1 1 0 0 0 0 2z"/></svg>
+      </div>
+      <div class="app-title-wrap">
+        <h2>Student Finance ✨</h2>
+        <p id="home-greeting">Hey there! 👋</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" title="Toggle Theme" onclick="toggleTheme()" id="theme-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+      <button class="icon-btn" title="Settings" onclick="openModal('modal-settings')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+      <button class="icon-btn" title="Sign Out" onclick="doLogout()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="app-content">
+    <div class="section-title">Financial Overview ⚡</div>
+    <div class="fin-grid">
+      <div class="fin-card blue">
+        <div class="fin-card-label">Current Balance</div>
+        <div class="fin-card-amount">$ <span id="balance-display">$0.00</span></div>
+        <div class="fin-card-sub">Your total wealth 💎</div>
+      </div>
+      <div class="fin-card green">
+        <div class="fin-card-label">This Month's Income</div>
+        <div class="fin-card-amount">↗ <span id="income-display">$0.00</span></div>
+        <div class="fin-card-sub">Money coming in! 🎉</div>
+      </div>
+      <div class="fin-card red">
+        <div class="fin-card-label">This Month's Expenses</div>
+        <div class="fin-card-amount">↘ <span id="expense-display">$0.00</span></div>
+        <div class="fin-card-sub">Money spent 👜</div>
+      </div>
+    </div>
+
+    <div class="section-title">Quick Actions ✨</div>
+    <div class="quick-grid">
+      <div class="quick-card" onclick="showPage('page-income')">
+        <div class="quick-icon" style="background:#e8f5e9;">💰</div>
+        <h4>Manage Income</h4><p>Track your earnings</p>
+      </div>
+      <div class="quick-card" onclick="showPage('page-expense')">
+        <div class="quick-icon" style="background:#fce4ec;">🛍️</div>
+        <h4>Manage Expenses</h4><p>Monitor your spending</p>
+      </div>
+      <div class="quick-card" onclick="showPage('page-reports')">
+        <div class="quick-icon" style="background:#ede7f6;">📋</div>
+        <h4>Special Reports</h4><p>Custom insights</p>
+      </div>
+      <div class="quick-card" onclick="showPage('page-fulldash')">
+        <div class="quick-icon" style="background:#e3f2fd;">📊</div>
+        <h4>Full Dashboard</h4><p>Detailed analytics</p>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-bottom:12px;">System 📥</div>
+    <div class="system-card">
+      <div class="system-icon">💾</div>
+      <div style="flex:1">
+        <h4>Backup Your Data</h4>
+        <p>Keep your finances safe! 🔒</p>
+      </div>
+      <button class="btn-sm btn-blue" onclick="doBackup()">Backup Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     PAGE: INCOME MANAGEMENT
+════════════════════════════════ -->
+<div class="page" id="page-income">
+  <div class="app-header">
+    <div class="app-header-left">
+      <button class="icon-btn" onclick="showPage('page-home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div style="font-size:22px;">📈</div>
+      <div class="app-title-wrap"><h2>Income Management</h2><p id="income-total-header">Total: $0.00</p></div>
+    </div>
+    <button class="icon-btn" onclick="openModal('modal-settings')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" id="tab-income-items" onclick="switchTab('income','items')">Income Items</button>
+    <button class="tab-btn" id="tab-income-types" onclick="switchTab('income','types')">Income Types</button>
+  </div>
+
+  <div id="panel-income-items">
+    <div class="section-box">
+      <div class="section-box-header">
+        <div><h3>Income Items</h3><p>Track all your income transactions</p></div>
+        <button class="btn-sm btn-blue" onclick="openModal('modal-add-income')">+ Add Income</button>
+      </div>
+      <div id="income-items-list">
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d0d3e8" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          <p>No income items yet. Start tracking your earnings!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="panel-income-types" style="display:none;">
+    <div class="section-box">
+      <div class="section-box-header">
+        <div><h3>Income Types</h3><p>Manage your income categories</p></div>
+        <button class="btn-sm btn-blue" onclick="openModal('modal-add-income-type')">+ Add Type</button>
+      </div>
+      <div class="type-grid" id="income-types-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     PAGE: EXPENSE MANAGEMENT
+════════════════════════════════ -->
+<div class="page" id="page-expense">
+  <div class="app-header">
+    <div class="app-header-left">
+      <button class="icon-btn" onclick="showPage('page-home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div style="font-size:22px;">📉</div>
+      <div class="app-title-wrap"><h2>Expense Management</h2><p id="expense-total-header">Total: $0.00</p></div>
+    </div>
+    <button class="icon-btn" onclick="openModal('modal-settings')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" id="tab-expense-items" onclick="switchTab('expense','items')">Expense Items</button>
+    <button class="tab-btn" id="tab-expense-types" onclick="switchTab('expense','types')">Expense Types</button>
+  </div>
+
+  <div id="panel-expense-items">
+    <div class="section-box">
+      <div class="section-box-header">
+        <div><h3>Expense Items</h3><p>Track all your spending</p></div>
+        <button class="btn-sm btn-blue" onclick="openModal('modal-add-expense')">+ Add Expense</button>
+      </div>
+      <div id="expense-items-list">
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#d0d3e8" stroke-width="1.5"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+          <p>No expenses yet. Start tracking your spending!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="panel-expense-types" style="display:none;">
+    <div class="section-box">
+      <div class="section-box-header">
+        <div><h3>Expense Types</h3><p>Manage your expense categories</p></div>
+        <button class="btn-sm btn-blue" onclick="openModal('modal-add-expense-type')">+ Add Type</button>
+      </div>
+      <div class="type-grid" id="expense-types-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     PAGE: SPECIAL REPORTS
+════════════════════════════════ -->
+<div class="page" id="page-reports">
+  <div class="app-header">
+    <div class="app-header-left">
+      <button class="icon-btn" onclick="showPage('page-home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div style="font-size:22px;">📋</div>
+      <div class="app-title-wrap"><h2>Special Reports</h2><p>Custom financial analysis</p></div>
+    </div>
+  </div>
+  <div class="app-content">
+    <div class="section-box" style="margin:0 0 20px;">
+      <h3 style="font-size:15px;font-weight:700;color:#1a1d3b;margin-bottom:4px;">Generate Report</h3>
+      <p style="font-size:13px;color:#8a8fb0;margin-bottom:16px;">Select a date range to analyze your finances</p>
+      <div class="form-row">
+        <div class="form-field">
+          <label>📅 Start Date</label>
+          <input type="date" id="report-start" value="2026-01-01"/>
+        </div>
+        <div class="form-field">
+          <label>📅 End Date</label>
+          <input type="date" id="report-end" value="2026-12-31"/>
+        </div>
+      </div>
+      <button class="btn-sm btn-blue" style="width:100%;padding:12px;font-size:14px;border-radius:10px;" onclick="generateReport()">📄 Generate Report</button>
+    </div>
+
+    <div id="report-results" style="display:none;">
+      <div class="reports-grid">
+        <div class="report-card"><div class="report-card-label">📈 Total Income</div><div class="report-card-amount green" id="rep-income">$0.00</div></div>
+        <div class="report-card"><div class="report-card-label">📉 Total Expenses</div><div class="report-card-amount red" id="rep-expense">$0.00</div></div>
+        <div class="report-card"><div class="report-card-label">💰 Net Balance</div><div class="report-card-amount blue" id="rep-balance">$0.00</div></div>
+      </div>
+      <div class="section-box" style="margin:0 0 20px;">
+        <h3 style="font-size:15px;font-weight:700;margin-bottom:4px;">Income by Type</h3>
+        <p style="font-size:13px;color:#8a8fb0;margin-bottom:12px;">Breakdown of income sources</p>
+        <div id="rep-income-breakdown"><p style="color:#b0b4cc;font-size:14px;text-align:center;padding:20px 0;">No income in this period</p></div>
+      </div>
+      <div class="section-box" style="margin:0;">
+        <h3 style="font-size:15px;font-weight:700;margin-bottom:4px;">Expenses by Type</h3>
+        <p style="font-size:13px;color:#8a8fb0;margin-bottom:12px;">Breakdown of expense categories</p>
+        <div id="rep-expense-breakdown"><p style="color:#b0b4cc;font-size:14px;text-align:center;padding:20px 0;">No expenses in this period</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     PAGE: FULL DASHBOARD
+════════════════════════════════ -->
+<div class="page" id="page-fulldash">
+  <div class="app-header">
+    <div class="app-header-left">
+      <button class="icon-btn" onclick="showPage('page-home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div style="font-size:22px;">📊</div>
+      <div class="app-title-wrap"><h2>Full Dashboard</h2><p>Comprehensive financial analytics</p></div>
+    </div>
+  </div>
+  <div class="app-content">
+    <div class="chart-area">
+      <h3>Income vs Expenses Comparison</h3>
+      <p>Monthly breakdown of earnings and spending</p>
+      <div class="bar-chart" id="income-expense-chart"></div>
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#27ae60;"></div>Income</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e74c3c;"></div>Expenses</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+      <div class="chart-area" style="margin:0;">
+        <h3>Expense Breakdown by Type</h3>
+        <p>Distribution of spending categories</p>
+        <div id="pie-chart-area" style="text-align:center;padding:20px 0;color:#b0b4cc;font-size:14px;">No expense data available</div>
+      </div>
+      <div class="chart-area" style="margin:0;">
+        <h3>Financial Status</h3>
+        <p>Net worth progression</p>
+        <div id="networth-chart" style="text-align:center;padding:20px 0;color:#b0b4cc;font-size:14px;">No data available</div>
+      </div>
+    </div>
+
+    <div class="insights-box">
+      <h3>📈 Financial Insights</h3>
+      <div class="insight-item">💡 <strong>Tip:</strong> Your expense breakdown chart shows where most of your money goes. Consider reducing spending in the largest category to save more!</div>
+      <div class="insight-item">📊 <strong>Analysis:</strong> Compare your income rate vs expense rate. If expenses consistently exceed income, it's time to adjust your budget.</div>
+      <div class="insight-item">🎯 <strong>Goal:</strong> Aim for a positive cashflow trend. The upward slope in your financial status chart indicates healthy money management.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     MODALS
+════════════════════════════════ -->
+
+<!-- Settings -->
+<div class="modal-overlay" id="modal-settings">
+  <div class="modal" style="max-width:380px;">
+    <button class="modal-close" onclick="closeModal('modal-settings')">✕</button>
+    <h3>⚙️ Settings</h3>
+    <p class="modal-sub">Customize your finance experience</p>
+    <div class="form-field"><label>Currency Preference</label></div>
+    <div id="currency-list">
+      <div class="currency-option selected" onclick="setCurrency('USD','$')"><span class="flag">🇺🇸</span> USD ($) <span style="margin-left:auto;">✓</span></div>
+      <div class="currency-option" onclick="setCurrency('EUR','€')"><span class="flag">🇪🇺</span> EUR (€)</div>
+      <div class="currency-option" onclick="setCurrency('GBP','£')"><span class="flag">🇬🇧</span> GBP (£)</div>
+      <div class="currency-option" onclick="setCurrency('JPY','¥')"><span class="flag">🇯🇵</span> JPY (¥)</div>
+      <div class="currency-option" onclick="setCurrency('CAD','$')"><span class="flag">🇨🇦</span> CAD ($)</div>
+      <div class="currency-option" onclick="setCurrency('AUD','$')"><span class="flag">🇦🇺</span> AUD ($)</div>
+      <div class="currency-option" onclick="setCurrency('THB','฿')"><span class="flag">🇹🇭</span> THB (฿)</div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Income -->
+<div class="modal-overlay" id="modal-add-income">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-add-income')">✕</button>
+    <h3>Add Income</h3>
+    <p class="modal-sub">Record a new income transaction</p>
+    <div class="form-field"><label>Title</label><input type="text" id="inc-title" placeholder="e.g., Part-time salary"/></div>
+    <div class="form-field"><label>Amount</label><input type="number" id="inc-amount" placeholder="0.00" min="0"/></div>
+    <div class="form-field"><label>Type</label>
+      <select id="inc-type"><option value="">-- Select Type --</option></select>
+    </div>
+    <div class="form-field"><label>Date</label><input type="date" id="inc-date"/></div>
+    <button class="btn-sm btn-blue" style="width:100%;padding:12px;font-size:14px;border-radius:10px;" onclick="addIncome()">Add Income</button>
+  </div>
+</div>
+
+<!-- Add Income Type -->
+<div class="modal-overlay" id="modal-add-income-type">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-add-income-type')">✕</button>
+    <h3>Add Income Type</h3>
+    <p class="modal-sub">Create categories to organize your income sources</p>
+    <div class="form-field"><label>Type Name</label><input type="text" id="inc-type-name" placeholder="e.g., Part-time Job, Allowance"/></div>
+    <div class="form-field"><label>Description (Optional)</label><textarea id="inc-type-desc" placeholder="Add details about this income type"></textarea></div>
+    <button class="btn-sm btn-blue" style="width:100%;padding:12px;font-size:14px;border-radius:10px;" onclick="addIncomeType()">Add Type</button>
+  </div>
+</div>
+
+<!-- Add Expense -->
+<div class="modal-overlay" id="modal-add-expense">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-add-expense')">✕</button>
+    <h3>Add Expense</h3>
+    <p class="modal-sub">Record a new expense transaction</p>
+    <div class="form-field"><label>Title</label><input type="text" id="exp-title" placeholder="e.g., Groceries"/></div>
+    <div class="form-field"><label>Amount</label><input type="number" id="exp-amount" placeholder="0.00" min="0"/></div>
+    <div class="form-field"><label>Type</label>
+      <select id="exp-type"><option value="">-- Select Type --</option></select>
+    </div>
+    <div class="form-field"><label>Date</label><input type="date" id="exp-date"/></div>
+    <button class="btn-sm btn-blue" style="width:100%;padding:12px;font-size:14px;border-radius:10px;" onclick="addExpense()">Add Expense</button>
+  </div>
+</div>
+
+<!-- Add Expense Type -->
+<div class="modal-overlay" id="modal-add-expense-type">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-add-expense-type')">✕</button>
+    <h3>Add Expense Type</h3>
+    <p class="modal-sub">Create categories to organize your spending</p>
+    <div class="form-field"><label>Type Name</label><input type="text" id="exp-type-name" placeholder="e.g., Food, Transport"/></div>
+    <div class="form-field"><label>Description (Optional)</label><textarea id="exp-type-desc" placeholder="Add details about this expense type"></textarea></div>
+    <button class="btn-sm btn-blue" style="width:100%;padding:12px;font-size:14px;border-radius:10px;" onclick="addExpenseType()">Add Type</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════ -->
+<script>
+// ── SESSION CHECK ───────────────────────────────
+const currentUser = JSON.parse(localStorage.getItem('ss_current_user') || 'null');
+if (!currentUser) { window.location.href = 'login.html'; }
+else { document.getElementById('home-greeting').textContent = 'Hey ' + currentUser.name + '! 👋'; }
+
+// ── STATE (data persisted in localStorage) ──────
+let currency = localStorage.getItem('ss_currency') || '$';
+
+let incomeItems  = JSON.parse(localStorage.getItem('ss_incomeItems')  || '[]');
+let expenseItems = JSON.parse(localStorage.getItem('ss_expenseItems') || '[]');
+let incomeTypes  = JSON.parse(localStorage.getItem('ss_incomeTypes')  || JSON.stringify([
+  {id:1, name:'Part-time Job', desc:'Income from work'},
+  {id:2, name:'Allowance',     desc:'Monthly allowance'}
+]));
+let expenseTypes = JSON.parse(localStorage.getItem('ss_expenseTypes') || JSON.stringify([
+  {id:1, name:'Food',      desc:'Meals and groceries'},
+  {id:2, name:'Transport', desc:'Getting around'}
+]));
+
+function save() {
+  localStorage.setItem('ss_incomeItems',  JSON.stringify(incomeItems));
+  localStorage.setItem('ss_expenseItems', JSON.stringify(expenseItems));
+  localStorage.setItem('ss_incomeTypes',  JSON.stringify(incomeTypes));
+  localStorage.setItem('ss_expenseTypes', JSON.stringify(expenseTypes));
+  localStorage.setItem('ss_currency',     currency);
+}
+
+// ── NAVIGATION ──────────────────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (id === 'page-home')     updateHomeDashboard();
+  if (id === 'page-income')   { renderIncomeTypes(); renderIncomeItems(); updateIncomeTotals(); }
+  if (id === 'page-expense')  { renderExpenseTypes(); renderExpenseItems(); updateExpenseTotals(); }
+  if (id === 'page-fulldash') renderFullDashboard();
+}
+
+// ── MODALS ──────────────────────────────────────
+function openModal(id) {
+  if (id === 'modal-add-income')  populateSelect('inc-type', incomeTypes);
+  if (id === 'modal-add-expense') populateSelect('exp-type', expenseTypes);
+  document.getElementById(id).classList.add('show');
+}
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('show'); });
+});
+
+function populateSelect(selId, types) {
+  const sel = document.getElementById(selId);
+  sel.innerHTML = '<option value="">-- Select Type --</option>';
+  types.forEach(t => { const o = document.createElement('option'); o.value = t.name; o.textContent = t.name; sel.appendChild(o); });
+}
+
+// ── FORMAT ──────────────────────────────────────
+function fmt(n) { return currency + n.toFixed(2); }
+
+// ── HOME DASHBOARD ──────────────────────────────
+function updateHomeDashboard() {
+  const totalInc = incomeItems.reduce((s,i)=>s+i.amount,0);
+  const totalExp = expenseItems.reduce((s,i)=>s+i.amount,0);
+  document.getElementById('balance-display').textContent  = fmt(totalInc - totalExp);
+  document.getElementById('income-display').textContent   = fmt(totalInc);
+  document.getElementById('expense-display').textContent  = fmt(totalExp);
+}
+updateHomeDashboard();
+
+// ── CURRENCY ────────────────────────────────────
+function setCurrency(code, sym) {
+  currency = sym;
+  document.querySelectorAll('#currency-list .currency-option').forEach(el => {
+    el.classList.remove('selected');
+    const last = el.querySelector('span:last-child');
+    if (last && last.textContent === '✓') last.remove();
+  });
+  event.currentTarget.classList.add('selected');
+  const tick = document.createElement('span'); tick.textContent = '✓'; tick.style.marginLeft = 'auto';
+  event.currentTarget.appendChild(tick);
+  save();
+  updateHomeDashboard(); updateIncomeTotals(); updateExpenseTotals();
+  closeModal('modal-settings');
+}
+
+// ── INCOME ──────────────────────────────────────
+function addIncome() {
+  const title  = document.getElementById('inc-title').value.trim();
+  const amount = parseFloat(document.getElementById('inc-amount').value);
+  const type   = document.getElementById('inc-type').value;
+  const date   = document.getElementById('inc-date').value;
+  if (!title || isNaN(amount) || !date) { alert('Please fill in all required fields.'); return; }
+  incomeItems.push({id: Date.now(), title, amount, type, date});
+  save();
+  closeModal('modal-add-income');
+  ['inc-title','inc-amount','inc-date'].forEach(id => document.getElementById(id).value = '');
+  renderIncomeItems(); updateIncomeTotals();
+}
+
+function addIncomeType() {
+  const name = document.getElementById('inc-type-name').value.trim();
+  const desc = document.getElementById('inc-type-desc').value.trim();
+  if (!name) { alert('Type name is required.'); return; }
+  incomeTypes.push({id: Date.now(), name, desc});
+  save();
+  closeModal('modal-add-income-type');
+  document.getElementById('inc-type-name').value = '';
+  document.getElementById('inc-type-desc').value = '';
+  renderIncomeTypes();
+}
+
+function deleteIncomeType(id) {
+  const idx = incomeTypes.findIndex(t=>t.id===id);
+  if (idx > -1) { incomeTypes.splice(idx,1); save(); renderIncomeTypes(); }
+}
+
+function updateIncomeTotals() {
+  const total = incomeItems.reduce((s,i)=>s+i.amount,0);
+  document.getElementById('income-total-header').textContent = 'Total: ' + fmt(total);
+}
+
+function renderIncomeItems() {
+  const el = document.getElementById('income-items-list');
+  if (!incomeItems.length) {
+    el.innerHTML = '<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="#d0d3e8" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg><p>No income items yet. Start tracking your earnings!</p></div>';
+    return;
+  }
+  el.innerHTML = '<div class="items-list">' + incomeItems.map(i =>
+    `<div class="item-row">
+      <div class="item-info"><h4>${i.title}</h4><p>${i.type||'No type'} · ${i.date}</p></div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="item-amount income">+${fmt(i.amount)}</span>
+        <button onclick="deleteItem('income',${i.id})" style="border:none;background:transparent;color:#e74c3c;cursor:pointer;font-size:18px;">🗑</button>
+      </div>
+    </div>`).join('') + '</div>';
+}
+
+function renderIncomeTypes() {
+  const grid = document.getElementById('income-types-grid');
+  if (!incomeTypes.length) { grid.innerHTML = '<p style="color:#b0b4cc;font-size:14px;padding:20px 0;">No types yet.</p>'; return; }
+  grid.innerHTML = incomeTypes.map(t =>
+    `<div class="type-card">
+      <div class="type-card-header"><h4>${t.name}</h4>
+        <div class="type-actions">
+          <button class="icon-action del" onclick="deleteIncomeType(${t.id})" title="Delete">🗑</button>
+        </div>
+      </div>
+      <p>${t.desc||'No description'}</p>
+      <div class="type-card-count">${incomeItems.filter(i=>i.type===t.name).length} items</div>
+    </div>`).join('');
+}
+
+// ── EXPENSE ─────────────────────────────────────
+function addExpense() {
+  const title  = document.getElementById('exp-title').value.trim();
+  const amount = parseFloat(document.getElementById('exp-amount').value);
+  const type   = document.getElementById('exp-type').value;
+  const date   = document.getElementById('exp-date').value;
+  if (!title || isNaN(amount) || !date) { alert('Please fill in all required fields.'); return; }
+  expenseItems.push({id: Date.now(), title, amount, type, date});
+  save();
+  closeModal('modal-add-expense');
+  ['exp-title','exp-amount','exp-date'].forEach(id => document.getElementById(id).value = '');
+  renderExpenseItems(); updateExpenseTotals();
+}
+
+function addExpenseType() {
+  const name = document.getElementById('exp-type-name').value.trim();
+  const desc = document.getElementById('exp-type-desc').value.trim();
+  if (!name) { alert('Type name is required.'); return; }
+  expenseTypes.push({id: Date.now(), name, desc});
+  save();
+  closeModal('modal-add-expense-type');
+  document.getElementById('exp-type-name').value = '';
+  document.getElementById('exp-type-desc').value = '';
+  renderExpenseTypes();
+}
+
+function deleteExpenseType(id) {
+  const idx = expenseTypes.findIndex(t=>t.id===id);
+  if (idx > -1) { expenseTypes.splice(idx,1); save(); renderExpenseTypes(); }
+}
+
+function updateExpenseTotals() {
+  const total = expenseItems.reduce((s,i)=>s+i.amount,0);
+  document.getElementById('expense-total-header').textContent = 'Total: ' + fmt(total);
+}
+
+function renderExpenseItems() {
+  const el = document.getElementById('expense-items-list');
+  if (!expenseItems.length) {
+    el.innerHTML = '<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="#d0d3e8" stroke-width="1.5"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg><p>No expenses yet. Start tracking your spending!</p></div>';
+    return;
+  }
+  el.innerHTML = '<div class="items-list">' + expenseItems.map(i =>
+    `<div class="item-row">
+      <div class="item-info"><h4>${i.title}</h4><p>${i.type||'No type'} · ${i.date}</p></div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="item-amount expense">-${fmt(i.amount)}</span>
+        <button onclick="deleteItem('expense',${i.id})" style="border:none;background:transparent;color:#e74c3c;cursor:pointer;font-size:18px;">🗑</button>
+      </div>
+    </div>`).join('') + '</div>';
+}
+
+function renderExpenseTypes() {
+  const grid = document.getElementById('expense-types-grid');
+  if (!expenseTypes.length) { grid.innerHTML = '<p style="color:#b0b4cc;font-size:14px;padding:20px 0;">No types yet.</p>'; return; }
+  grid.innerHTML = expenseTypes.map(t =>
+    `<div class="type-card">
+      <div class="type-card-header"><h4>${t.name}</h4>
+        <div class="type-actions">
+          <button class="icon-action del" onclick="deleteExpenseType(${t.id})" title="Delete">🗑</button>
+        </div>
+      </div>
+      <p>${t.desc||'No description'}</p>
+      <div class="type-card-count">${expenseItems.filter(i=>i.type===t.name).length} items</div>
+    </div>`).join('');
+}
+
+function deleteItem(kind, id) {
+  if (kind === 'income')  { const i = incomeItems.findIndex(x=>x.id===id);  if(i>-1) incomeItems.splice(i,1);  renderIncomeItems();  updateIncomeTotals(); }
+  else                    { const i = expenseItems.findIndex(x=>x.id===id); if(i>-1) expenseItems.splice(i,1); renderExpenseItems(); updateExpenseTotals(); }
+  save(); updateHomeDashboard();
+}
+
+// ── TABS ────────────────────────────────────────
+function switchTab(section, tab) {
+  if (section === 'income') {
+    document.getElementById('panel-income-items').style.display = tab==='items' ? '' : 'none';
+    document.getElementById('panel-income-types').style.display = tab==='types' ? '' : 'none';
+    document.getElementById('tab-income-items').className = 'tab-btn' + (tab==='items'?' active':'');
+    document.getElementById('tab-income-types').className = 'tab-btn' + (tab==='types'?' active':'');
+    if (tab==='types') renderIncomeTypes();
+  } else {
+    document.getElementById('panel-expense-items').style.display = tab==='items' ? '' : 'none';
+    document.getElementById('panel-expense-types').style.display = tab==='types' ? '' : 'none';
+    document.getElementById('tab-expense-items').className = 'tab-btn' + (tab==='items'?' active':'');
+    document.getElementById('tab-expense-types').className = 'tab-btn' + (tab==='types'?' active':'');
+    if (tab==='types') renderExpenseTypes();
+  }
+}
+
+// ── REPORTS ─────────────────────────────────────
+function generateReport() {
+  const start = new Date(document.getElementById('report-start').value);
+  const end   = new Date(document.getElementById('report-end').value);
+  const filtInc = incomeItems.filter(i  => { const d=new Date(i.date); return d>=start&&d<=end; });
+  const filtExp = expenseItems.filter(i => { const d=new Date(i.date); return d>=start&&d<=end; });
+  const totalInc = filtInc.reduce((s,i)=>s+i.amount,0);
+  const totalExp = filtExp.reduce((s,i)=>s+i.amount,0);
+  document.getElementById('rep-income').textContent  = fmt(totalInc);
+  document.getElementById('rep-expense').textContent = fmt(totalExp);
+  document.getElementById('rep-balance').textContent = fmt(totalInc - totalExp);
+
+  const incEl = document.getElementById('rep-income-breakdown');
+  if (!filtInc.length) { incEl.innerHTML = '<p style="color:#b0b4cc;font-size:14px;text-align:center;padding:20px 0;">No income in this period</p>'; }
+  else {
+    const byType = {};
+    filtInc.forEach(i=>{ byType[i.type||'Other'] = (byType[i.type||'Other']||0)+i.amount; });
+    incEl.innerHTML = Object.entries(byType).map(([t,a])=>
+      `<div class="item-row"><div class="item-info"><h4>${t}</h4></div><span class="item-amount income">+${fmt(a)}</span></div>`
+    ).join('');
+  }
+
+  const expEl = document.getElementById('rep-expense-breakdown');
+  if (!filtExp.length) { expEl.innerHTML = '<p style="color:#b0b4cc;font-size:14px;text-align:center;padding:20px 0;">No expenses in this period</p>'; }
+  else {
+    const byType = {};
+    filtExp.forEach(i=>{ byType[i.type||'Other'] = (byType[i.type||'Other']||0)+i.amount; });
+    expEl.innerHTML = Object.entries(byType).map(([t,a])=>
+      `<div class="item-row"><div class="item-info"><h4>${t}</h4></div><span class="item-amount expense">-${fmt(a)}</span></div>`
+    ).join('');
+  }
+
+  document.getElementById('report-results').style.display = '';
+}
+
+// ── FULL DASHBOARD CHARTS ───────────────────────
+function renderFullDashboard() {
+  const months = [];
+  const now = new Date();
+  for (let i=5;i>=0;i--) {
+    const d = new Date(now.getFullYear(), now.getMonth()-i, 1);
+    months.push({label: d.toLocaleString('default',{month:'short',year:'2-digit'}), month: d.getMonth(), year: d.getFullYear()});
+  }
+  const maxVal = Math.max(...months.map(m => {
+    const inc = incomeItems.filter(i=>{ const d=new Date(i.date); return d.getMonth()===m.month&&d.getFullYear()===m.year; }).reduce((s,i)=>s+i.amount,0);
+    const exp = expenseItems.filter(i=>{ const d=new Date(i.date); return d.getMonth()===m.month&&d.getFullYear()===m.year; }).reduce((s,i)=>s+i.amount,0);
+    return Math.max(inc, exp);
+  }), 1);
+
+  document.getElementById('income-expense-chart').innerHTML = months.map(m => {
+    const inc = incomeItems.filter(i=>{ const d=new Date(i.date); return d.getMonth()===m.month&&d.getFullYear()===m.year; }).reduce((s,i)=>s+i.amount,0);
+    const exp = expenseItems.filter(i=>{ const d=new Date(i.date); return d.getMonth()===m.month&&d.getFullYear()===m.year; }).reduce((s,i)=>s+i.amount,0);
+    return `<div class="bar-group">
+      <div class="bar-pair">
+        <div class="bar income-bar" style="height:${Math.round((inc/maxVal)*130)}px;" title="Income: ${fmt(inc)}"></div>
+        <div class="bar expense-bar" style="height:${Math.round((exp/maxVal)*130)}px;" title="Expenses: ${fmt(exp)}"></div>
+      </div>
+      <div class="bar-label">${m.label}</div>
+    </div>`;
+  }).join('');
+
+  const pieEl = document.getElementById('pie-chart-area');
+  const totalExp = expenseItems.reduce((s,i)=>s+i.amount,0);
+  if (!totalExp) { pieEl.innerHTML = '<p style="color:#b0b4cc;font-size:14px;padding:20px 0;">No expense data available</p>'; }
+  else {
+    const byType = {};
+    expenseItems.forEach(i=>{ byType[i.type||'Other']=(byType[i.type||'Other']||0)+i.amount; });
+    const colors = ['#1a6ef7','#27ae60','#e74c3c','#f39c12','#9b59b6','#1abc9c'];
+    pieEl.innerHTML = Object.entries(byType).map(([t,a],idx)=>
+      `<div style="display:flex;align-items:center;gap:8px;margin:6px 0;font-size:13px;">
+        <div style="width:12px;height:12px;border-radius:3px;background:${colors[idx%colors.length]};flex-shrink:0;"></div>
+        <span>${t}</span><span style="margin-left:auto;font-weight:600;">${fmt(a)}</span>
+      </div>`
+    ).join('');
+  }
+
+  const totalInc = incomeItems.reduce((s,i)=>s+i.amount,0);
+  document.getElementById('networth-chart').innerHTML =
+    `<div style="font-size:28px;font-weight:800;color:${totalInc-totalExp>=0?'#27ae60':'#e74c3c'};padding:20px 0;">${fmt(totalInc-totalExp)}</div>
+     <div style="font-size:13px;color:#8a8fb0;">Current Net Worth</div>`;
+}
+
+// ── DARK MODE ───────────────────────────────────
+let darkMode = false;
+function toggleTheme() {
+  darkMode = !darkMode;
+  document.body.classList.toggle('dark', darkMode);
+}
+
+// ── BACKUP ──────────────────────────────────────
+function doBackup() {
+  const data = { user: currentUser?.name||'User', incomeItems, expenseItems, incomeTypes, expenseTypes, exportedAt: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'studospend-backup.json'; a.click();
+}
+
+// ── LOGOUT ──────────────────────────────────────
+function doLogout() {
+  localStorage.removeItem('ss_current_user');
+  window.location.href = 'login.html';
+}
+
+// ── SET TODAY DATE ──────────────────────────────
+window.onload = function() {
+  const today = new Date().toISOString().split('T')[0];
+  ['inc-date','exp-date'].forEach(id => { const el=document.getElementById(id); if(el) el.value=today; });
+};
+</script>
+</body>
+</html>
