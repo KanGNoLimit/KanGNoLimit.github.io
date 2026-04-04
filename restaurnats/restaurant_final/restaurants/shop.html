@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Restaurants </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script>(function(){var t=localStorage.getItem("darling-theme")||"dark";document.documentElement.setAttribute("data-theme",t);})()</script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    
+    :root{--bg:#0d0d0d;--surface:#161616;--surface2:#1e1e1e;--border:#2a2a2a;--accent:#c9922a;--accent2:#e8b84b;--text:#f0ede8;--muted:#8a8075;--nav-h:72px;}
+    [data-theme="light"]{--bg:#faf8f4;--surface:#ffffff;--surface2:#f2ede6;--border:#e0d8cc;--accent:#b07d1e;--accent2:#c9922a;--text:#1a1208;--muted:#7a6a55;}
+    [data-theme="light"] nav{background:rgba(250,248,244,0.95)!important;}
+    [data-theme="light"] .btn-login,[data-theme="light"] .btn-primary-gold,[data-theme="light"] .btn-search,[data-theme="light"] .btn-submit{color:#fff!important;}
+    .theme-toggle{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--surface2);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;transition:border-color .2s,transform .35s,background .3s;flex-shrink:0}
+    .theme-toggle:hover{border-color:var(--accent);transform:rotate(25deg)}
+    body{font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .3s,color .3s}
+    a{text-decoration:none;color:inherit}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(13,13,13,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background .3s,border-color .3s}
+    .nav-brand{font-family:"Playfair Display",serif;font-size:1.25rem;font-weight:700;display:flex;align-items:center;gap:10px}
+    .nav-brand .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
+    .nav-links{display:flex;align-items:center;gap:8px;list-style:none}
+    .nav-links a{padding:6px 18px;border-radius:30px;font-size:.875rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;transition:background .2s,color .2s;color:var(--muted)}
+    .nav-links a:hover,.nav-links a.active{background:var(--surface2);color:var(--text)}
+    .nav-actions{display:flex;align-items:center;gap:12px}
+    .btn-login{background:var(--accent);color:#000!important;padding:8px 20px;border-radius:30px;font-weight:600;font-size:.875rem;display:flex;align-items:center;gap:6px;transition:background .2s}
+    .btn-login:hover{background:var(--accent2)}
+    .page-header{padding:calc(var(--nav-h) + 60px) 48px 50px;border-bottom:1px solid var(--border)}
+    .page-header .label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
+    .page-header h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700}
+    .search-wrap{padding:40px 48px;background:var(--surface);transition:background .3s}
+    .search-card{background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:32px 36px}
+    .search-card h3{font-family:"Playfair Display",serif;font-size:1.1rem;margin-bottom:24px;color:var(--accent)}
+    .search-grid{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:16px;align-items:end}
+    .field-group label{display:block;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:500}
+    .field-group input,.field-group select{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--text);font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s,background .3s;appearance:none}
+    .field-group input::placeholder{color:var(--muted)}
+    .field-group input:focus,.field-group select:focus{border-color:var(--accent)}
+    .field-group select option{background:var(--surface2);color:var(--text)}
+    .btn-search{background:var(--accent);color:#000;border:none;padding:12px 28px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .2s,transform .2s;white-space:nowrap}
+    .btn-search:hover{background:var(--accent2);transform:translateY(-1px)}
+    [data-theme="light"] .btn-search{color:#fff}
+    .results-wrap{padding:48px}
+    .results-status{color:var(--muted);font-size:.85rem;margin-bottom:32px;letter-spacing:.05em}
+    #result{display:flex;flex-direction:column;gap:24px}
+    .restaurant-card{display:grid;grid-template-columns:280px 1fr;background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:border-color .3s,transform .3s,background .3s}
+    .restaurant-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+    .restaurant-card img{width:100%;height:220px;object-fit:cover;display:block;cursor:pointer}
+    .card-body{padding:32px 36px;display:flex;flex-direction:column;gap:12px}
+    .card-body h3{font-family:"Playfair Display",serif;font-size:1.4rem;font-weight:700}
+    .card-meta{display:flex;flex-wrap:wrap;gap:16px}
+    .meta-item{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted)}
+    .meta-item .fa{color:var(--accent);font-size:.8rem}
+    .rating-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,146,42,.12);border:1px solid rgba(201,146,42,.3);color:var(--accent);padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:600}
+    .budget-badge{display:inline-flex;align-items:center;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:600}
+    .food-badge{display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:4px 12px;border-radius:20px;font-size:.8rem}
+    .review-box{margin-top:8px;padding:14px 18px;background:var(--surface2);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;font-size:.85rem;color:var(--muted);line-height:1.6;font-style:italic}
+    .no-result{text-align:center;padding:80px 40px;color:var(--muted)}
+    .loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 40px;gap:20px;color:var(--muted)}
+    .spinner{width:40px;height:40px;border-radius:50%;border:3px solid var(--border);border-top-color:var(--accent);animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px}
+    .modal-overlay.open{display:flex}
+    .modal{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px;max-width:540px;width:100%;position:relative;animation:modal-in .3s ease}
+    @keyframes modal-in{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .modal-close{position:absolute;top:16px;right:16px;background:var(--surface2);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;font-size:1rem;transition:color .2s}
+    .modal-close:hover{color:var(--text)}
+    .modal h2{font-family:"Playfair Display",serif;font-size:1.6rem;margin-bottom:20px}
+    .modal .meta-item{margin-bottom:10px}
+    .modal .review-box{margin-top:16px}
+    footer{background:var(--surface);border-top:1px solid var(--border);padding:40px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;transition:background .3s,border-color .3s}
+    footer p{color:var(--muted);font-size:.85rem}
+    .social-links{display:flex;gap:12px}
+    .social-links a{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:border-color .2s,color .2s}
+    .social-links a:hover{border-color:var(--accent);color:var(--accent)}
+    @media(max-width:900px){nav{padding:0 24px}.page-header,.search-wrap,.results-wrap{padding-left:24px;padding-right:24px}.search-grid{grid-template-columns:1fr 1fr}.btn-search{grid-column:1/-1;justify-content:center}.restaurant-card{grid-template-columns:1fr}.restaurant-card img{height:200px}.nav-links{display:none}}
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="index.html"><span class="dot"></span> Hmu</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html" class="active">Restaurants</a></li>
+    <li><a href="why.html">About Us</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="Login.html" class="btn-login"><i class="fa fa-user"></i> Login</a>
+    <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" title="Toggle light/dark mode">☀️</button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="label">Explore</div>
+  <h1>Browse Restaurants</h1>
+</div>
+
+<div class="search-wrap">
+  <div class="search-card">
+    <h3><i class="fa fa-sliders"></i> &nbsp;Filter Results</h3>
+    <div class="search-grid">
+      <div class="field-group">
+        <label>Cuisine Type</label>
+        <input type="text" id="food" placeholder="e.g. Thai, Western, Chinese" />
+      </div>
+      <div class="field-group">
+        <label>Budget</label>
+        <select id="budget">
+          <option value="">Any Budget</option>
+          <option value="$">$ — Budget</option>
+          <option value="$$">$$ — Mid-range</option>
+          <option value="$$$">$$$ — Premium</option>
+          <option value="$$$$">$$$$ — Fine Dining</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Location</label>
+        <input type="text" id="location" placeholder="e.g. Orchard, Marina Bay" />
+      </div>
+      <button class="btn-search" onclick="searchRestaurant()"><i class="fa fa-search"></i> Search</button>
+    </div>
+  </div>
+</div>
+
+<div class="results-wrap">
+  <div class="results-status" id="status">Loading restaurants…</div>
+  <div id="result"><div class="loading"><div class="spinner"></div><span>Fetching from database…</span></div></div>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
+    <h2 id="modal-name"></h2>
+    <div class="card-meta" style="margin-bottom:8px">
+      <span class="meta-item"><i class="fa fa-map-marker"></i> <span id="modal-location"></span></span>
+      <span class="meta-item"><i class="fa fa-cutlery"></i> <span id="modal-food"></span></span>
+      <span class="rating-badge"><i class="fa fa-star"></i> <span id="modal-rating"></span></span>
+      <span class="budget-badge"><span id="modal-budget"></span></span>
+    </div>
+    <div class="review-box" id="modal-review"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; <span id="yr"></span> Hmu Restaurant Recommendation. All Rights Reserved.</p>
+  <div class="social-links">
+    <a href="#"><i class="fa fa-facebook"></i></a>
+    <a href="#"><i class="fa fa-twitter"></i></a>
+    <a href="#"><i class="fa fa-instagram"></i></a>
+    <a href="#"><i class="fa fa-youtube"></i></a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // ── IMPORTANT: Path to your PHP file relative to this HTML file ──
+  // Both files are in: C:\xampp\htdocs\restaurant_final\restaurants\
+  // So we just use the filename directly (same folder).
+  var PHP_URL = "get_restaurants.php";
+
+  function loadRestaurants() {
+    fetch(PHP_URL)
+      .then(function(r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(function(data) {
+        if (data.error) throw new Error(data.error);
+        displayRestaurants(data);
+      })
+      .catch(function(err) {
+        console.error("Load error:", err);
+        document.getElementById("result").innerHTML =
+          "<div class='no-result'>" +
+          "<i class='fa fa-exclamation-triangle' style='font-size:2rem;display:block;margin-bottom:16px'></i>" +
+          "<h3>Could not load restaurants</h3>" +
+          "<p style='margin-top:8px'>Error: " + err.message + "</p>" +
+          "<p style='margin-top:8px'>Make sure XAMPP is running and you are accessing via <strong>http://localhost/...</strong></p>" +
+          "</div>";
+        document.getElementById("status").textContent = "Error loading data.";
+      });
+  }
+
+  function searchRestaurant() {
+    var food     = document.getElementById("food").value.trim();
+    var budget   = document.getElementById("budget").value.trim();
+    var location = document.getElementById("location").value.trim();
+
+    // Build query string and send filters to PHP (server-side filtering)
+    var params = new URLSearchParams();
+    if (food)     params.append("food", food);
+    if (budget)   params.append("budget", budget);
+    if (location) params.append("location", location);
+
+    document.getElementById("result").innerHTML =
+      "<div class='loading'><div class='spinner'></div><span>Searching…</span></div>";
+    document.getElementById("status").textContent = "Searching…";
+
+    fetch(PHP_URL + (params.toString() ? "?" + params.toString() : ""))
+      .then(function(r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(function(data) {
+        if (data.error) throw new Error(data.error);
+        displayRestaurants(data);
+      })
+      .catch(function(err) {
+        console.error("Search error:", err);
+        document.getElementById("result").innerHTML =
+          "<div class='no-result'><h3>Search failed</h3><p>" + err.message + "</p></div>";
+        document.getElementById("status").textContent = "Error.";
+      });
+  }
+
+  function displayRestaurants(list) {
+    var status = document.getElementById("status");
+    var result = document.getElementById("result");
+
+    if (!list || list.length === 0) {
+      result.innerHTML =
+        "<div class='no-result'>" +
+        "<i class='fa fa-search' style='font-size:2.5rem;display:block;margin-bottom:16px'></i>" +
+        "<h3>No Restaurants Found</h3><p>Try adjusting your filters.</p></div>";
+      status.textContent = "0 results found";
+      return;
+    }
+
+    status.textContent = list.length + " restaurant" + (list.length !== 1 ? "s" : "") + " found";
+
+    result.innerHTML = list.map(function(r) {
+      // Image path: DB stores "images/p1.png", file is in same folder as this HTML.
+      var imgSrc = r.image ? r.image : "";
+      var reviewSafe = (r.review || "").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+
+      return "<div class='restaurant-card'>" +
+        "<img src='" + imgSrc + "' alt='" + r.name + "'" +
+        " onerror=\"this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&q=80'\"" +
+        " onclick='viewRestaurant(this)'" +
+        " data-name=\"" + r.name + "\"" +
+        " data-location=\"" + r.location + "\"" +
+        " data-food=\"" + (r.food || "") + "\"" +
+        " data-rating=\"" + r.rating + "\"" +
+        " data-budget=\"" + r.budget + "\"" +
+        " data-review=\"" + reviewSafe + "\" />" +
+        "<div class='card-body'>" +
+        "<h3>" + r.name + "</h3>" +
+        "<div class='card-meta'>" +
+        "<span class='meta-item'><i class='fa fa-map-marker'></i> " + (r.location || "") + "</span>" +
+        "<span class='meta-item'><i class='fa fa-cutlery'></i> " + (r.food || "") + "</span>" +
+        "<span class='rating-badge'><i class='fa fa-star'></i> " + r.rating + "</span>" +
+        "<span class='budget-badge'>" + (r.budget || "") + "</span>" +
+        "</div>" +
+        (r.review ? "<div class='review-box'>" + r.review + "</div>" : "") +
+        "</div></div>";
+    }).join("");
+  }
+
+  function viewRestaurant(img) {
+    document.getElementById("modal-name").textContent     = img.dataset.name;
+    document.getElementById("modal-location").textContent = img.dataset.location;
+    document.getElementById("modal-food").textContent     = img.dataset.food;
+    document.getElementById("modal-rating").textContent   = img.dataset.rating;
+    document.getElementById("modal-budget").textContent   = img.dataset.budget;
+    document.getElementById("modal-review").textContent   = img.dataset.review;
+    document.getElementById("modal").classList.add("open");
+  }
+
+  function closeModal() { document.getElementById("modal").classList.remove("open"); }
+  document.getElementById("modal").addEventListener("click", function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // Allow Enter key to trigger search
+  document.querySelectorAll(".search-grid input, .search-grid select").forEach(function(inp) {
+    inp.addEventListener("keydown", function(e) { if (e.key === "Enter") searchRestaurant(); });
+  });
+
+  // Load all restaurants on page load
+  window.onload = loadRestaurants;
+
+  function toggleTheme() {
+    var cur  = document.documentElement.getAttribute("data-theme") || "dark";
+    var next = cur === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("darling-theme", next);
+    document.getElementById("theme-btn").textContent = next === "dark" ? "☀️" : "🌙";
+  }
+  (function() {
+    var t = localStorage.getItem("darling-theme") || "dark";
+    document.documentElement.setAttribute("data-theme", t);
+    var b = document.getElementById("theme-btn");
+    if (b) b.textContent = t === "dark" ? "☀️" : "🌙";
+  })();
+</script>
+</body>
+</html>

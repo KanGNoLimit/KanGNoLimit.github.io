@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Login </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script>(function(){var t=localStorage.getItem("darling-theme")||"dark";document.documentElement.setAttribute("data-theme",t);})()</script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    
+    :root{--bg:#0d0d0d;--surface:#161616;--surface2:#1e1e1e;--border:#2a2a2a;--accent:#c9922a;--accent2:#e8b84b;--text:#f0ede8;--muted:#8a8075;--nav-h:72px;}
+    [data-theme="light"]{--bg:#faf8f4;--surface:#ffffff;--surface2:#f2ede6;--border:#e0d8cc;--accent:#b07d1e;--accent2:#c9922a;--text:#1a1208;--muted:#7a6a55;}
+    [data-theme="light"] nav{background:rgba(250,248,244,0.95)!important;}
+    [data-theme="light"] .btn-login,[data-theme="light"] .btn-primary-gold,[data-theme="light"] .btn-submit{color:#fff!important;}
+    .theme-toggle{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--surface2);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;transition:border-color .2s,transform .35s,background .3s;flex-shrink:0}
+    .theme-toggle:hover{border-color:var(--accent);transform:rotate(25deg)}
+    body{font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;transition:background .3s,color .3s}
+    a{text-decoration:none;color:inherit}
+    nav{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 48px;border-bottom:1px solid var(--border);background:rgba(13,13,13,0.95);backdrop-filter:blur(12px);transition:background .3s,border-color .3s}
+    .nav-brand{font-family:"Playfair Display",serif;font-size:1.25rem;font-weight:700;display:flex;align-items:center;gap:10px}
+    .nav-brand .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
+    .nav-links{display:flex;align-items:center;gap:8px;list-style:none}
+    .nav-links a{padding:6px 18px;border-radius:30px;font-size:.875rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;transition:background .2s,color .2s;color:var(--muted)}
+    .nav-links a:hover{background:var(--surface2);color:var(--text)}
+    .nav-actions{display:flex;align-items:center;gap:12px}
+    main{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 24px;position:relative;overflow:hidden}
+    main::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,146,42,.06) 0%,transparent 70%);pointer-events:none}
+    .login-wrap{width:100%;max-width:440px;position:relative}
+    .login-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:48px 44px;transition:background .3s,border-color .3s}
+    .login-logo{font-family:"Playfair Display",serif;font-size:1.5rem;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:36px}
+    .login-logo .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+    .login-card h1{font-family:"Playfair Display",serif;font-size:1.9rem;font-weight:700;margin-bottom:8px}
+    .login-card .subtitle{color:var(--muted);font-size:.9rem;margin-bottom:36px;line-height:1.6}
+    .tabs{display:flex;gap:4px;background:var(--surface2);border-radius:10px;padding:4px;margin-bottom:32px}
+    .tab-btn{flex:1;padding:10px;background:transparent;border:none;border-radius:8px;color:var(--muted);font-family:inherit;font-size:.875rem;font-weight:500;cursor:pointer;transition:background .2s,color .2s}
+    .tab-btn.active{background:var(--surface);color:var(--text)}
+    .form-panel{display:none}
+    .form-panel.active{display:flex;flex-direction:column;gap:16px}
+    .field-group{display:flex;flex-direction:column;gap:8px}
+    .field-group label{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+    .input-wrap{position:relative}
+    .input-wrap .fa{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.9rem;pointer-events:none}
+    .input-wrap input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:13px 16px 13px 42px;color:var(--text);font-family:inherit;font-size:.9rem;outline:none;transition:border-color .2s,background .3s}
+    .input-wrap input::placeholder{color:var(--muted)}
+    .input-wrap input:focus{border-color:var(--accent)}
+    .forgot{text-align:right;font-size:.8rem;color:var(--muted);margin-top:-8px;display:block}
+    .forgot:hover{color:var(--accent)}
+    .btn-submit{width:100%;background:var(--accent);color:#000;border:none;padding:14px;border-radius:50px;font-weight:700;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;margin-top:8px;transition:background .2s,transform .2s;font-family:inherit}
+    .btn-submit:hover{background:var(--accent2);transform:translateY(-2px)}
+    [data-theme="light"] .btn-submit{color:#fff}
+    .divider{display:flex;align-items:center;gap:16px;margin:8px 0;color:var(--muted);font-size:.8rem}
+    .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--border)}
+    .social-btns{display:flex;flex-direction:column;gap:12px}
+    .btn-social{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px;color:var(--text);font-family:inherit;font-size:.875rem;font-weight:500;cursor:pointer;transition:border-color .2s,background .3s}
+    .btn-social:hover{border-color:var(--accent);background:var(--surface)}
+    .terms{font-size:.78rem;color:var(--muted);text-align:center;line-height:1.6}
+    .terms a{color:var(--accent)}
+    footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-items:center;justify-content:center;transition:border-color .3s}
+    footer p{color:var(--muted);font-size:.8rem}
+    @media(max-width:600px){nav{padding:0 20px}footer{padding:20px}.login-card{padding:36px 28px}.nav-links{display:none}}
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="index.html"><span class="dot"></span> Hmu</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Restaurants</a></li>
+    <li><a href="why.html">About Us</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" title="Toggle light/dark mode">☀️</button>
+  </div>
+</nav>
+
+<main>
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="login-logo"><span class="dot"></span> DarlinG</div>
+      <h1>Welcome Back</h1>
+      <p class="subtitle">Sign in to access your restaurant recommendations and saved favourites.</p>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('login',this)">Sign In</button>
+        <button class="tab-btn" onclick="switchTab('register',this)">Register</button>
+      </div>
+      <div class="form-panel active" id="panel-login">
+        <div class="field-group"><label>Email Address</label><div class="input-wrap"><i class="fa fa-envelope"></i><input type="email" placeholder="you@example.com" /></div></div>
+        <div class="field-group"><label>Password</label><div class="input-wrap"><i class="fa fa-lock"></i><input type="password" placeholder="••••••••" /></div></div>
+        <a href="#" class="forgot">Forgot password?</a>
+        <button class="btn-submit" onclick="handleLogin()">Sign In</button>
+        <div class="divider">or continue with</div>
+        <div class="social-btns">
+          <button class="btn-social"><i class="fa fa-google"></i> Continue with Google</button>
+          <button class="btn-social"><i class="fa fa-facebook"></i> Continue with Facebook</button>
+        </div>
+      </div>
+      <div class="form-panel" id="panel-register">
+        <div class="field-group"><label>Full Name</label><div class="input-wrap"><i class="fa fa-user"></i><input type="text" placeholder="Your name" /></div></div>
+        <div class="field-group"><label>Email Address</label><div class="input-wrap"><i class="fa fa-envelope"></i><input type="email" placeholder="you@example.com" /></div></div>
+        <div class="field-group"><label>Password</label><div class="input-wrap"><i class="fa fa-lock"></i><input type="password" placeholder="Create a strong password" /></div></div>
+        <button class="btn-submit" onclick="handleRegister()">Create Account</button>
+        <p class="terms">By registering you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer><p>&copy; <span id="yr"></span> DarlinG Restaurant Recommendation. All Rights Reserved.</p></footer>
+
+<script>
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  function switchTab(tab,btn){
+    document.querySelectorAll(".tab-btn").forEach(function(b){b.classList.remove("active")});
+    document.querySelectorAll(".form-panel").forEach(function(p){p.classList.remove("active")});
+    btn.classList.add("active");
+    document.getElementById("panel-"+tab).classList.add("active");
+  }
+  function handleLogin(){ alert("Login — connect to your PHP backend."); }
+  function handleRegister(){ alert("Register — connect to your PHP backend."); }
+  
+  function toggleTheme(){var cur=document.documentElement.getAttribute("data-theme")||"dark";var next=cur==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",next);localStorage.setItem("darling-theme",next);document.getElementById("theme-btn").textContent=next==="dark"?"☀️":"🌙";}
+  (function(){var t=localStorage.getItem("darling-theme")||"dark";document.documentElement.setAttribute("data-theme",t);var b=document.getElementById("theme-btn");if(b)b.textContent=t==="dark"?"☀️":"🌙";})();
+</script>
+</body>
+</html>
